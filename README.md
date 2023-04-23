@@ -1,8 +1,6 @@
 
 # Python Code for Kite Zerodha Platform
 
-* __Author: [TradeViaPython](https://www.youtube.com/c/TradeViaPython)__
-
 ## Installation
 
 How to use:
@@ -14,7 +12,7 @@ How to use:
 
 ### Prerequisites
 
-Python >=3.7
+Python latest version
 
 ### Python Code Example
 Import
@@ -47,7 +45,15 @@ kite = KiteApp(enctoken=enctoken)
 ```
 
 Other Methods
+
 ```python
+
+import datetime
+import pytz
+IST = pytz.timezone('Asia/Kolkata')
+current_time = datetime.datetime.now(IST)
+print(f"Current IST time is {current_time}")
+
 # Basic calls
 print(kite.margins())
 print(kite.orders())
@@ -71,14 +77,13 @@ to_datetime = datetime.datetime.now()
 interval = "5minute"
 print(kite.historical_data(instrument_token, from_datetime, to_datetime, interval, continuous=False, oi=False))
 
-
 # Place Order
 order = kite.place_order(variety=kite.VARIETY_REGULAR,
                          exchange=kite.EXCHANGE_NSE,
-                         tradingsymbol="ACC",
+                         tradingsymbol="RUPA",
                          transaction_type=kite.TRANSACTION_TYPE_BUY,
                          quantity=1,
-                         product=kite.PRODUCT_MIS,
+                         product=kite.PRODUCT_CNC,
                          order_type=kite.ORDER_TYPE_MARKET,
                          price=None,
                          validity=None,
@@ -92,11 +97,12 @@ order = kite.place_order(variety=kite.VARIETY_REGULAR,
 print(order)
 
 # Modify order
+
 kite.modify_order(variety=kite.VARIETY_REGULAR,
                   order_id="order_id",
                   parent_order_id=None,
                   quantity=5,
-                  price=200,
+                  price=236,
                   order_type=kite.ORDER_TYPE_LIMIT,
                   trigger_price=None,
                   validity=kite.VALIDITY_DAY,
